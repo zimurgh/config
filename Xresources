@@ -1,0 +1,73 @@
+! Common
+
+#define S_yellow								#af8700
+#define S_orange								#d75f00
+#define S_red										#d70000
+#define S_magenta								#af005f
+#define S_violet								#5f5faf
+#define S_blue									#0087ff
+#define S_cyan									#00afaf
+#define S_green									#5f8700
+
+
+! Dark
+
+#define S_base03								#1c1c1c
+#define S_base02								#262626
+#define S_base01								#585858
+#define S_base00								#626262
+#define S_base0									#808080
+#define S_base1									#8a8a8a
+#define S_base2									#e4e4e4
+#define S_base3									#ffffd7
+
+! Light
+!
+!#define S_base03								#fdf6e3
+!#define S_base02								#eee8d5
+!#define S_base01								#93a1a1
+!#define S_base00								#839496
+!#define S_base0								#657b83
+!#define S_base1								#586e75
+!#define S_base2								#073642
+!#define S_base3								#002b36
+
+
+URxvt*background:								S_base03
+URxvt*foreground:								S_base0
+!URxvt*fading:										40
+!URxvt*fadeColor:								S_base03
+URxvt*cursorColor:							S_base1
+URxvt*pointerColorBackground:		S_base01
+URxvt*pointerColorForeground:		S_base1
+
+URxvt*color0:										S_base02
+URxvt*color1:										S_red
+URxvt*color2:										S_green
+URxvt*color3:										S_yellow
+URxvt*color4:										S_blue
+URxvt*color5:										S_magenta
+URxvt*color6:										S_cyan
+URxvt*color7:										S_base2
+URxvt*color8:										S_orange
+URxvt*color9:										S_base03
+URxvt*color10:									S_base01
+URxvt*color11:									S_base00
+URxvt*color12:									S_base0
+URxvt*color13:									S_violet
+URxvt*color14:									S_base1
+URxvt*color15:									S_base3
+
+URxvt.colorIT:									S_magenta
+URxvt.colorBD:									S_cyan
+URxvt.colorUL:									S_orange
+
+URxvt*loginShell: 							true
+URxvt.scrollBar: 								false
+URxvt.scrollstyle: 							plain
+
+URxvt.perl-ext:                 default,url-select
+URxvt.keysym.M-u:               perl:url-select:select_next
+URxvt.url-select.launcher:      /usr/bin/firefox -new-tab
+URxvt.url-select.underline:     true
+!URxvt.perl-ext-common:          default,tabbed
