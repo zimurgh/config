@@ -2,7 +2,7 @@
 
 #define S_yellow								#af8700
 #define S_orange								#d75f00
-#define S_red										#d70000
+#define S_red									#d70000
 #define S_magenta								#af005f
 #define S_violet								#5f5faf
 #define S_blue									#0087ff
@@ -35,22 +35,22 @@
 
 URxvt*background:								S_base03
 URxvt*foreground:								S_base0
-!URxvt*fading:										40
+URxvt*fading:									40
 !URxvt*fadeColor:								S_base03
-URxvt*cursorColor:							S_base1
-URxvt*pointerColorBackground:		S_base01
-URxvt*pointerColorForeground:		S_base1
+URxvt*cursorColor:							    S_base1
+URxvt*pointerColorBackground:		            S_base01
+URxvt*pointerColorForeground:		            S_base1
 
-URxvt*color0:										S_base02
-URxvt*color1:										S_red
-URxvt*color2:										S_green
-URxvt*color3:										S_yellow
-URxvt*color4:										S_blue
-URxvt*color5:										S_magenta
-URxvt*color6:										S_cyan
-URxvt*color7:										S_base2
-URxvt*color8:										S_orange
-URxvt*color9:										S_base03
+URxvt*color0:									S_base02
+URxvt*color1:									S_red
+URxvt*color2:									S_green
+URxvt*color3:									S_yellow
+URxvt*color4:									S_blue
+URxvt*color5:									S_magenta
+URxvt*color6:									S_cyan
+URxvt*color7:									S_base2
+URxvt*color8:									S_orange
+URxvt*color9:									S_base03
 URxvt*color10:									S_base01
 URxvt*color11:									S_base00
 URxvt*color12:									S_base0
@@ -62,12 +62,12 @@ URxvt.colorIT:									S_magenta
 URxvt.colorBD:									S_cyan
 URxvt.colorUL:									S_orange
 
-URxvt*loginShell: 							true
+URxvt*loginShell: 							    true
 URxvt.scrollBar: 								false
-URxvt.scrollstyle: 							plain
+URxvt.scrollstyle: 							    plain
 
-URxvt.perl-ext:                 default,url-select
-URxvt.keysym.M-u:               perl:url-select:select_next
-URxvt.url-select.launcher:      /usr/bin/firefox -new-tab
-URxvt.url-select.underline:     true
-!URxvt.perl-ext-common:          default,tabbed
+URxvt.perl-ext:                                 default,url-select
+URxvt.keysym.M-u:                               perl:url-select:select_next
+URxvt.url-select.launcher:                      /usr/bin/firefox -new-tab
+URxvt.url-select.underline:                     true
+!URxvt.perl-ext-common:                          default,tabbed

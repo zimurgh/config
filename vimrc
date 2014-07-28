@@ -45,6 +45,7 @@ set wrap
 set showcmd             " show command in bottom bar
 set so=7
 set wildmenu            " visual autocomplete for command menu
+set wildmode=full
 set wildignore=*.o,*~
 set ruler
 set cmdheight=1
