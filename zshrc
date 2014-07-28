@@ -2,7 +2,7 @@
 # File:			.zshrc	ZSH resource file   #
 # Version:	    0.0.4 						#
 # Author:		Michael Carpenter			#
-# Date:	        25/12/12				    #
+# Date:	        28/7/14				        #
 #-------------------------------------------#
 
 autoload -Uz compinit

@@ -1,3 +1,9 @@
+#####################################
+# File:     muttrc                  #
+# Author:   Michael Carpenter       #
+# Date:     28/7/14                 #
+#####################################
+
 # directories and commands
 set alias_file        = ~/.mutt/alias
 set header_cache      = ~/.mutt/cache/headers

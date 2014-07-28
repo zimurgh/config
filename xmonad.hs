@@ -2,7 +2,7 @@
 -- File:    xmonad.hs
 -- Version: 0.2
 -- Author:  Michael Carpenter
--- Date: 6/8/13
+-- Date:    28/7/14
 -------------------------------
 
 -- Core
