@@ -2,7 +2,7 @@
 -- File:    xmonad.hs
 -- Version: 0.2
 -- Author:  Michael Carpenter
--- Date:    28/7/14
+-- Date: 6/8/13
 -------------------------------
 
 -- Core
@@ -43,7 +43,7 @@ myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 myBorderWidth	= 2
 myModMask	= mod4Mask
-myWorkspaces	= ["$","audio","chat","dev","doc","mail","minecraft"]
+myWorkspaces	= ["$"]
 myNormalBorderColor = "grey"
 myFocusedBorderColor = "green"
 

@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""
-"   File:       .vimrc                      "
+"   File:       .vimrc  Vim Config file     "
 "   Author:     Michael Carpenter           "
-"   Date:       28/7/14                     "
+"   Date:       25/12/12                    "
 """""""""""""""""""""""""""""""""""""""""""""
         
 """""""""""""""""""""""""""""""""""""""""""""
@@ -72,10 +72,10 @@ set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 
 """""""""""""""""""""""""""""""""""""""""""""
-set foldenable          " enable folding
-set foldlevelstart=5    " how many folds should be opened
-set foldnestmax=10      " 10 nested fold max
-set foldmethod=indent   " fold based on indent level
+"set foldenable          " enable folding
+"set foldlevelstart=5    " how many folds should be opened
+"set foldnestmax=10      " 10 nested fold max
+"set foldmethod=indent   " fold based on indent level
 """""""""""""""""""""""""""""""""""""""""""""
 " Spell Check
 """""""""""""""""""""""""""""""""""""""""""""
