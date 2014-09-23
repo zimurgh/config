@@ -1,17 +1,38 @@
 """""""""""""""""""""""""""""""""""""""""""""
 "   File:       .vimrc  Vim Config file     "
 "   Author:     Michael Carpenter           "
-"   Date:       25/12/12                    "
+"   Date:       22/9/14                     "
 """""""""""""""""""""""""""""""""""""""""""""
         
 """""""""""""""""""""""""""""""""""""""""""""
 " General
-"""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""
 call pathogen#infect()
 set history=500
 filetype plugin on
 filetype indent on
 set autoread
+set shell=zsh
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" Haskellmode-vim
+"""""""""""""""""""""""""""""""""""""""""""""
+au BufEnter *.hs compiler ghc
+let g:ghc="/usr/bin/ghc"
+let g:haddock_browser="/usr/bin/firefox"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" Neocomplcache 
+"""""""""""""""""""""""""""""""""""""""""""""
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_force_overwrite_completefunc = 1
+let g:neocomplcache_fuzzy_completion_start_length = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""
+" Neco-ghc
+"""""""""""""""""""""""""""""""""""""""""""""
+let g:necoghc_enable_detailed_browse = 1
 
 """""""""""""""""""""""""""""""""""""""""""""
 " Colors and Fonts
@@ -26,7 +47,7 @@ set encoding=utf8
 " Text, Tab, and Indent
 """""""""""""""""""""""""""""""""""""""""""""
 set expandtab
-set tabstop=4 " number of visual spaces per TAB
+set tabstop=8 " number of visual spaces per TAB
 set softtabstop=4
 set shiftwidth=4
 set smarttab
