@@ -2,7 +2,7 @@
 -- File:    xmonad.hs
 -- Version: 0.2
 -- Author:  Michael Carpenter
--- Date: 6/8/13
+-- Date:    6/8/13
 -------------------------------
 
 -- Core
@@ -15,12 +15,14 @@ import qualified Data.Map as M
 -- Actions
 import XMonad.Actions.CycleWS
 import XMonad.Actions.DynamicWorkspaces
+import XMonad.Actions.TopicSpace
 -- Layouts
 import XMonad.Layout.Circle
 import XMonad.Layout.Spiral
 import XMonad.Layout.Grid
 import XMonad.Layout.NoBorders
 import XMonad.Layout.OneBig
+import XMonad.Layout.ToggleLayouts
 -- Hooks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
@@ -33,16 +35,16 @@ import XMonad.Prompt.Shell
 import XMonad.Prompt.Ssh
 import XMonad.Prompt.Workspace
 import XMonad.Prompt.Window
+import XMonad.Prompt.XMonad
 -- Utils
 import XMonad.Util.Run
 
 
 -- The Basics
 myTerminal	= "urxvtc"
-myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 myBorderWidth	= 2
-myModMask	= mod4Mask
+myModMask	= controlMask
 myWorkspaces	= ["$"]
 myNormalBorderColor = "grey"
 myFocusedBorderColor = "green"
@@ -53,98 +55,113 @@ myXmonadBar = "dzen2 -x '0' -y '0' -h '20' -w '1600' -ta 'l' -fg '#F0F8FF' -bg '
 
 -- Key bindings
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
- 
-    	-- launch a terminal
-    	[ ((modm .|. mod1Mask	    , xK_Return )	, spawn $ XMonad.terminal conf)
- 
-    	-- close focused window
-    	, ((modm	                , xK_d )	    , kill)
- 
-     	-- Rotate through the available layout algorithms
-    	, ((modm               	    , xK_space )	, sendMessage NextLayout)
- 
-    	--  Reset the layouts on the current workspace to default
-    	, ((modm .|. mod1Mask	    , xK_space )	, setLayout $ XMonad.layoutHook conf)
- 
-    	-- Resize viewed windows to the correct size
-    	, ((modm               	    , xK_r )	    , refresh)
- 
-    	-- Move focus to the next window
-    	, ((modm               	    , xK_j )	    , windows W.focusDown)
- 
-    	-- Move focus to the previous window
-    	, ((modm               	    , xK_k )	    , windows W.focusUp)
- 
-    	-- Move focus to the master window
-    	, ((modm               	    , xK_m )	    , windows W.focusMaster)
- 
-    	-- Swap the focused window and the master window
-    	, ((modm               	    , xK_Return )	, windows W.swapMaster)
- 
-    	-- Swap the focused window with the next window
-    	, ((modm .|. mod1Mask	    , xK_j )	    , windows W.swapDown)
- 
-    	-- Swap the focused window with the previous window
-    	, ((modm .|. mod1Mask	    , xK_k )	    , windows W.swapUp)
- 
-    	-- Shrink the master area
-    	, ((modm               	    , xK_h )	    , sendMessage Shrink)
- 
-    	-- Expand the master area
-    	, ((modm               	    , xK_l )	    , sendMessage Expand)
- 
-    	-- Push window back into tiling
-    	, ((modm               	    , xK_L )	    , withFocused $ windows . W.sink)
- 
-    	-- Increment the number of windows in the master area
-    	, ((modm              	    , xK_comma )	, sendMessage (IncMasterN 1))
- 
-    	-- Deincrement the number of windows in the master area
-    	, ((modm              	    , xK_period )	, sendMessage (IncMasterN (-1)))
- 
-    	-- Toggle the status bar gap
-    	-- Use this binding with avoidStruts from Hooks.ManageDocks.
-    	-- See also the statusBar function from Hooks.DynamicLog.
-    	--
-    	, ((modm              	    , xK_B )	    , sendMessage ToggleStruts)
- 
-    	-- Quit xmonad
-    	, ((modm .|. mod1Mask	    , xK_q )	    , io (exitWith ExitSuccess))
- 
-    	-- Restart xmonad
-   	    , ((modm              	    , xK_q )	    , spawn "xmonad --recompile; xmonad --restart")
-	
-	    , ((modm              	    , xK_u )	    , moveTo Next NonEmptyWS)
+    	[ ((modm               	    , xK_Return )	    , windows W.swapMaster)
+        , ((modm .|. mod1Mask	    , xK_Return )	    , spawn $ XMonad.terminal conf)
+    	, ((modm                    , xK_space )	    , sendMessage NextLayout)
+    	, ((modm .|. mod1Mask	    , xK_space )	    , setLayout $ XMonad.layoutHook conf)
 
-	    , ((modm              	    , xK_e )	    , moveTo Prev NonEmptyWS)
+        -- NUMBER ROW (PROGRAMMER DVORAK)
+        , ((mod4Mask                , xK_dollar )       , shellPrompt defaultXPConfig)
+        --, ((modm .|. mod1Mask       , xK_dollar )       , return ())
+        --, ((modm                    , xK_ampersand )    , return ())
+        --, ((modm .|. mod1Mask       , xK_ampersand )    , return ())
+        --, ((modm                    , xK_bracketleft )  , return ())
+        --, ((modm .|. mod1Mask       , xK_bracketleft )  , return ())
+        --, ((modm                    , xK_braceleft )    , return ())
+        --, ((modm .|. mod1Mask       , xK_braceleft )    , return ())
+        --, ((modm                    , xK_braceright )   , return ())
+        --, ((modm .|. mod1Mask       , xK_braceright )   , return ())
+        --, ((modm                    , xK_parenleft )    , return ())
+        --, ((modm .|. mod1Mask       , xK_parenleft )    , return ())
+        --, ((modm                    , xK_equal )        , return ())
+        --, ((modm .|. mod1Mask       , xK_equal )        , return ())
+        --, ((modm                    , xK_asterisk )     , return ())
+        --, ((modm .|. mod1Mask       , xK_asterisk )     , return ())
+        --, ((modm                    , xK_parenright )   , return ())
+        --, ((modm .|. mod1Mask       , xK_parenright )   , return ())
+        --, ((modm                    , xK_plus )         , return ())
+        --, ((modm .|. mod1Mask       , xK_plus )         , return ())
+        --, ((modm                    , xK_bracketright   , return ())
+        --, ((modm .|. mod1Mask       , xK_bracketright   , return ())
+        --, ((modm                    , xK_exclam         , return ())
+        --, ((modm .|. mod1Mask       , xK_exclam         , return ())
+        --, ((modm                    , xK_numbersign     , return ())
+        --, ((modm .|. mod1Mask       , xK_numbersign     , return ())
 
-	    , ((modm .|. mod1Mask	    , xK_u )	    , shiftToNext >> nextWS)
+        -- TOP ROW (PROGRAMMER DVORAK)
+        --, ((modm                    , xK_semicolon )    , return ())
+        --, ((modm .|. mod1Mask       , xK_semicolon )    , return ())
+        , ((modm              	    , xK_comma )	    , sendMessage (IncMasterN 1))
+        --, ((modm .|. mod1Mask       , xK_comma          , return ())
+        , ((modm              	    , xK_period )	    , sendMessage (IncMasterN (-1)))
+        --, ((modm .|. mod1Mask       , xK_period         , return ())
+        --, ((modm                    , xK_p )            , return ())
+        , ((modm .|. mod1Mask	    , xK_p )	        , windowPromptBring defaultXPConfig)
+        --, ((modm                    , xK_y )            , return ())
+        --, ((modm .|. mod1Mask       , xK_y )            , return ())
+        , ((modm                    , xK_f )            , sendMessage (Toggle "Full"))
+        , ((modm .|. mod1Mask	    , xK_f )	        , spawn "firefox")
+        --, ((modm                    , xK_g )            , return ())
+        --, ((modm .|. mod1Mask       , xK_g )            , return ())
+        --, ((modm                    , xK_c )            , return ())
+        --, ((modm .|. mod1Mask       , xK_c )            . return ())
+        , ((modm               	    , xK_r )	        , refresh)
+        --, ((modm .|. mod1Mask       , xK_r )            , return ())
+        --, ((modm                    , xK_l )	          , return ())
+        , ((modm .|. mod1Mask       , xK_l )	        , sendMessage Expand)
+        , ((modm               	    , xK_L )	        , withFocused $ windows . W.sink)
+        --, ((modm                    , xK_slash )        , return ())
+        --, ((modm .|. mod1Mask       , xK_slash )        , return ())
+        --, ((modm                    , xK_at )           , return ())
+        --, ((modm .|. mod1Mask       , xK_at )           , return ())
+        --, ((modm                    , xK_backslash )    , return ())
+        --, ((modm .|. mod1Mask       , xK_backslash )    , return ())
 
-        , ((modm .|. mod1Mask       , xK_e )        , shiftToPrev >> prevWS)
-
-	    , ((modm .|. mod1Mask	    , xK_p )	    , windowPromptBring defaultXPConfig)
-	
-	    , ((modm		            , xK_t )	    , addWorkspacePrompt defaultXPConfig)
-
-	    , ((modm .|. mod1Mask		, xK_d )	    , removeWorkspace)
-
-	    , ((modm .|. mod1Mask       , xK_b )	    , selectWorkspace defaultXPConfig)
-
-        , ((modm                    , xK_b )        , windowPromptGoto defaultXPConfig)
-
-        , ((modm                    , xK_o )        , shellPrompt defaultXPConfig)
-
-	    -- My Keys
-	    
-    	, ((modm .|. mod1Mask	    , xK_f )	    , spawn "firefox")
-
-        , ((modm .|. mod1Mask       , xK_m )        , spawn "urxvtc -e mutt")
-
-        , ((modm .|. mod1Mask       , xK_v )        , spawn "virtualbox")
-
-        , ((modm .|. mod1Mask       , xK_z )        , spawn "zathura")
-
-    	]
+        -- HOME ROW (PROGRAMMER DVORAK)
+        --, ((modm                    , xK_a )            , return ())
+        --, ((modm .|. mod4Mask       , xK_a )            , return ())
+        , ((modm                    , xK_o )            , shellPrompt defaultXPConfig)
+        --, ((modm .|. mod4Mask       , xK_o )            , return ())
+        , ((modm              	    , xK_e )	        , moveTo Prev NonEmptyWS)
+        , ((modm .|. mod1Mask       , xK_e )            , shiftToPrev >> prevWS)
+        , ((modm              	    , xK_u )	        , moveTo Next NonEmptyWS)
+	    , ((modm .|. mod1Mask	    , xK_u )	        , shiftToNext >> nextWS)
+        --, ((modm                    , xK_i )            , return ())
+        --, ((modm .|. mod1Mask       , xK_i )            , return ())
+        , ((modm                    , xK_d )            , kill)
+	    , ((modm .|. mod1Mask       , xK_d )	        , removeWorkspace)
+        --, ((modm                    , xK_h )            , return ())
+        , ((modm .|. mod1Mask       , xK_h )	        , sendMessage Shrink)
+        --, ((modm                    , xK_t )            , return ())
+        , ((modm .|. mod1Mask		, xK_t )	        , addWorkspacePrompt defaultXPConfig)
+        --, ((modm                    , xK_n )            , return ())
+        --, ((modm .|. mod1Mask       , xK_n )            , return ())
+        --, ((modm                    , xK_s )            , return ())
+        --, ((modm .|. mod1Mask       , xK_s )            , return ())
+        --, ((modm                    , xK_minus )        , return ())
+        --, ((modm .|. mod1Mask       , xK_minus )        , return ())
+        
+        -- BOTTOM ROW (PROGRAMMER DVORAK)
+        --, ((modm                    , xK_colon )        , return ())
+        --, ((modm .|. mod1Mask       , xK_colon )        , return ())
+   	    , ((modm              	    , xK_q )	        , spawn "xmonad --recompile; xmonad --restart")
+    	, ((modm .|. mod1Mask	    , xK_q )	        , io (exitWith ExitSuccess))
+        , ((modm               	    , xK_j )	        , windows W.focusDown)
+        , ((modm .|. mod1Mask	    , xK_j )	        , windows W.swapDown)
+        , ((modm               	    , xK_k )	        , windows W.focusUp)
+        , ((modm .|. mod1Mask	    , xK_k )	        , windows W.swapUp)
+        --, ((modm                    , xK_x )            , return ())
+        --, ((modm .|. mod1Mask       , xK_x )            , return ())
+        , ((modm                    , xK_b )	        , selectWorkspace defaultXPConfig)
+        , ((modm               	    , xK_m )	        , windows W.focusMaster)
+        , ((modm .|. mod1Mask       , xK_m )            , spawn "urxvtc -title mutt -name mutt -e mutt")
+        --, ((modm                    , xK_w )            , return ())
+        --, ((modm .|. mod1Mask       , xK_w )            , return ())
+        --, ((modm                    , xK_v )            , return ())
+        --, ((modm .|. mod1Mask       , xK_v )            , return ())
+        --, ((modm                    , xK_z )            , return ())
+        , ((modm .|. mod1Mask       , xK_z )            , spawn "zathura")
+        ]
 
 -- Layout
 myLayoutHook = avoidStruts (tiled ||| Circle ||| Grid ||| spiral (6/7)) ||| full
@@ -175,9 +192,6 @@ base1         = "#8a8a8a"
 base2         = "#e4e4e4"
 base3         = "#ffffd7"
 
--- Manage Hooks
---myManageHook = return ()
-
 -- Log Hooks
 myLogHook h = dynamicLogWithPP $ defaultPP
   { ppCurrent         = dzenColor "#ebac54" "#1B1D1E" . pad
@@ -191,16 +205,18 @@ myLogHook h = dynamicLogWithPP $ defaultPP
   , ppOutput          = hPutStrLn h
    }
 
+--myManageHook = composeAll [ className =? "Firefox" --> doShift "www" ]
+
 main = do
   dzenLeftBar <- spawnPipe myXmonadBar	
   xmonad $ defaultConfig
-		{terminal		          = myTerminal
-		, focusFollowsMouse	  = myFocusFollowsMouse
+		{ terminal		          = myTerminal
+		, focusFollowsMouse	      = myFocusFollowsMouse
 		, borderWidth		      = myBorderWidth
 		, modMask		          = myModMask
 		, workspaces		      = myWorkspaces
-		, normalBorderColor	  = myNormalBorderColor
-		, focusedBorderColor	= myFocusedBorderColor
+		, normalBorderColor	      = myNormalBorderColor
+		, focusedBorderColor	  = myFocusedBorderColor
 
 		-- key bindings
 		, keys			          = myKeys
