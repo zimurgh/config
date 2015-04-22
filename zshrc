@@ -26,6 +26,7 @@ setopt completealiases
 #alias grep='grep --color=auto'
 #alias ls='ls --color=auto'
 alias scan='sudo ip link set wlp3s0 up && sudo iw dev wlp3s0 scan | less'
+alias keyboard='setxkbmap -layout us -variant dvp -option compose:102 -option numpad:shift3 -option kpdl:semi -option keypad:atm -option caps:shift && setxkbmap -option ctrl:swapcaps'
 
 # Completion
 zmodload zsh/complist
