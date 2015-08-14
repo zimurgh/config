@@ -1,13 +1,24 @@
 #-------------------------------------------#
-# File:			.zshrc	ZSH resource file   #
-# Version:	    0.0.4 						#
-# Author:		Michael Carpenter			#
-# Date:	        28/7/14				        #
+# File:	    zshrc	                    #
+# Version:  0.0.5 			    #
+# Author:   Michael Carpenter		    #
+# Date:	    14/8/15                         #
 #-------------------------------------------#
+#ZSH=/usr/share/oh-my-zsh/
+#DISABLE_AUTO_UPDATE="true"
+#ZSH_CACHE_DIR=$HOME/.oh-my-zsh.cache
+#if [[ ! -d $ZSH_CACHE_DIR ]];
+#then
+#    mkdir $ZSH_CACHE_DIR
+#fi
+
+#source $ZSH/oh-my-zsh.sh
 
 autoload -Uz compinit
 autoload colors; colors;
 compinit
+
+#ZSH_THEME="powerline"
 
 # History
 HISTFILE=~/.histfile
@@ -16,7 +27,7 @@ SAVEHIST=1000
 
 # Variables
 color='red'
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/michael/bin:/home/michael/.cabal/bin:/home/michael/.gem/ruby/2.1.0/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/oldmanmike/bin:/home/oldmanmike/.cabal/bin:/home/oldmanmike/.local/bin
 export BROWSER="firefox"
 export EDITOR="vim"
 export PDF="zathura"
@@ -27,6 +38,7 @@ setopt completealiases
 #alias ls='ls --color=auto'
 alias scan='sudo ip link set wlp3s0 up && sudo iw dev wlp3s0 scan | less'
 alias keyboard='setxkbmap -layout us -variant dvp -option compose:102 -option numpad:shift3 -option kpdl:semi -option keypad:atm -option caps:shift && setxkbmap -option ctrl:swapcaps'
+alias refresh='source ~/.zshrc'
 
 # Completion
 zmodload zsh/complist
