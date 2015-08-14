@@ -1,0 +1,2 @@
+#!/bin/sh
+feh  --bg-scale '/home/oldmanmike/.wallpaper/haskell_ornate.jpg' 
