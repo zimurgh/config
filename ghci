@@ -1,4 +1,6 @@
 let ghciEscapeShellArg arg = "'" ++ concatMap (\c -> if c == '\'' then "'\"'\"'" else [c]) arg ++ "'"
-:def! search return . (":! hoogle --color " ++) . ghciEscapeShellArg
-:def! doc return . (":! hoogle --info " ++) . ghciEscapeShellArg
-:set prompt "ghci> "
+:def! search return . (":!hoogle --color " ++) . ghciEscapeShellArg
+:def! doc \x -> return $ ":!hoogle --color --info \"" ++ x ++ "\""
+:def! hoogle \x -> return $ ":!hoogle --color \"" ++ x ++ "\""
+:def! clear return . (":!clear " ++) . ghciEscapeShellArg
+:set prompt "λ> "
