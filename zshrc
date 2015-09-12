@@ -1,8 +1,8 @@
 #-------------------------------------------#
-# File:	    zshrc	                    #
-# Version:  0.0.5 			    #
-# Author:   Michael Carpenter		    #
-# Date:	    14/8/15                         #
+# File:     zshrc                           #
+# Version:  0.0.5                           #
+# Author:   Michael Carpenter               #
+# Date:     14/8/15                         #
 #-------------------------------------------#
 #ZSH=/usr/share/oh-my-zsh/
 #DISABLE_AUTO_UPDATE="true"
@@ -27,7 +27,7 @@ SAVEHIST=1000
 
 # Variables
 color='red'
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/oldmanmike/bin:/home/oldmanmike/.cabal/bin:/home/oldmanmike/.local/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/oldmanmike/bin:/home/oldmanmike/.cabal/bin:/home/oldmanmike/.local/bin:/home/oldmanmike/.gem/ruby/2.2.0/bin
 export BROWSER="firefox"
 export EDITOR="vim"
 export PDF="zathura"
@@ -40,6 +40,8 @@ alias scan='sudo ip link set wlp3s0 up && sudo iw dev wlp3s0 scan | less'
 alias keyboard='setxkbmap -layout us -variant dvp -option compose:102 -option numpad:shift3 -option kpdl:semi -option keypad:atm -option caps:shift && setxkbmap -option ctrl:swapcaps'
 alias refresh='source ~/.zshrc'
 alias dev='cd ~/src/github.com/oldmanmike'
+alias github='cd ~/src/github.com'
+alias :r='stack build'
 
 # Completion
 zmodload zsh/complist
@@ -103,3 +105,6 @@ function cabal_sandbox_info() {
 }
 
 RPROMPT=$(haskell_info)
+
+# added by travis gem
+[ -f /home/oldmanmike/.travis/travis.sh ] && source /home/oldmanmike/.travis/travis.sh

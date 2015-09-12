@@ -41,24 +41,24 @@ import XMonad.Util.Run
 
 
 -- The Basics
-myTerminal	= "urxvtc"
+myTerminal = "urxvtc"
 myFocusFollowsMouse = True
-myBorderWidth	= 2
-myModMask	= controlMask
-myWorkspaces	= ["$"]
+myBorderWidth = 2
+myModMask = controlMask
+myWorkspaces = ["$","blog","chat","dev","doc","haskellmade-hero","log","minecraft","music","monitor","openmw","reddit","steam","video"]
 myNormalBorderColor = "grey"
 myFocusedBorderColor = "green"
 
 
 -- Dzen
-myXmonadBar = "dzen2 -x '0' -y '0' -h '20' -w '1600' -ta 'l' -fg '#F0F8FF' -bg '#1B1D1E'"
+myXmonadBar = "dzen2 -x '0' -y '0' -h '20' -w '1920' -ta 'l' -fg '#F0F8FF' -bg '#1B1D1E'"
 
 -- Key bindings
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-    	[ ((modm               	    , xK_Return )	    , windows W.swapMaster)
-        , ((modm .|. mod1Mask	    , xK_Return )	    , spawn $ XMonad.terminal conf)
-    	, ((modm                    , xK_space )	    , sendMessage NextLayout)
-    	, ((modm .|. mod1Mask	    , xK_space )	    , setLayout $ XMonad.layoutHook conf)
+        [ ((modm                    , xK_Return )       , windows W.swapMaster)
+        , ((modm .|. mod1Mask       , xK_Return )       , spawn $ XMonad.terminal conf)
+        , ((modm                    , xK_space )        , sendMessage NextLayout)
+        , ((modm .|. mod1Mask       , xK_space )        , setLayout $ XMonad.layoutHook conf)
 
         -- NUMBER ROW (PROGRAMMER DVORAK)
         , ((mod4Mask                , xK_dollar )       , shellPrompt defaultXPConfig)
@@ -91,25 +91,25 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         -- TOP ROW (PROGRAMMER DVORAK)
         --, ((modm                    , xK_semicolon )    , return ())
         --, ((modm .|. mod1Mask       , xK_semicolon )    , return ())
-        , ((modm              	    , xK_comma )	    , sendMessage (IncMasterN 1))
+        , ((modm                    , xK_comma )        , sendMessage (IncMasterN 1))
         --, ((modm .|. mod1Mask       , xK_comma          , return ())
-        , ((modm              	    , xK_period )	    , sendMessage (IncMasterN (-1)))
+        , ((modm                    , xK_period )       , sendMessage (IncMasterN (-1)))
         --, ((modm .|. mod1Mask       , xK_period         , return ())
         --, ((modm                    , xK_p )            , return ())
-        , ((modm .|. mod1Mask	    , xK_p )	        , windowPromptBring defaultXPConfig)
+        , ((modm .|. mod1Mask       , xK_p )            , windowPromptBring defaultXPConfig)
         --, ((modm                    , xK_y )            , return ())
         --, ((modm .|. mod1Mask       , xK_y )            , return ())
         , ((modm                    , xK_f )            , sendMessage (Toggle "Full"))
-        , ((modm .|. mod1Mask	    , xK_f )	        , spawn "firefox")
+        , ((modm .|. mod1Mask       , xK_f )            , spawn "chromium")
         --, ((modm                    , xK_g )            , return ())
         --, ((modm .|. mod1Mask       , xK_g )            , return ())
         --, ((modm                    , xK_c )            , return ())
         --, ((modm .|. mod1Mask       , xK_c )            . return ())
-        , ((modm               	    , xK_r )	        , refresh)
+        , ((modm                    , xK_r )            , refresh)
         --, ((modm .|. mod1Mask       , xK_r )            , return ())
-        --, ((modm                    , xK_l )	          , return ())
-        , ((modm .|. mod1Mask       , xK_l )	        , sendMessage Expand)
-        , ((modm               	    , xK_L )	        , withFocused $ windows . W.sink)
+        --, ((modm                    , xK_l )            , return ())
+        , ((modm .|. mod1Mask       , xK_l )            , sendMessage Expand)
+        --, ((modm                    , xK_L )          , withFocused $ windows . W.sink)
         --, ((modm                    , xK_slash )        , return ())
         --, ((modm .|. mod1Mask       , xK_slash )        , return ())
         --, ((modm                    , xK_at )           , return ())
@@ -122,38 +122,38 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         --, ((modm .|. mod4Mask       , xK_a )            , return ())
         , ((modm                    , xK_o )            , shellPrompt defaultXPConfig)
         --, ((modm .|. mod4Mask       , xK_o )            , return ())
-        , ((modm              	    , xK_e )	        , moveTo Prev NonEmptyWS)
+        , ((modm                    , xK_e )            , moveTo Prev NonEmptyWS)
         , ((modm .|. mod1Mask       , xK_e )            , shiftToPrev >> prevWS)
-        , ((modm              	    , xK_u )	        , moveTo Next NonEmptyWS)
-	    , ((modm .|. mod1Mask	    , xK_u )	        , shiftToNext >> nextWS)
+        , ((modm                    , xK_u )            , moveTo Next NonEmptyWS)
+        , ((modm .|. mod1Mask       , xK_u )            , shiftToNext >> nextWS)
         --, ((modm                    , xK_i )            , return ())
         --, ((modm .|. mod1Mask       , xK_i )            , return ())
         , ((modm                    , xK_d )            , kill)
-	    , ((modm .|. mod1Mask       , xK_d )	        , removeWorkspace)
+        , ((modm .|. mod1Mask       , xK_d )            , removeWorkspace)
         --, ((modm                    , xK_h )            , return ())
-        , ((modm .|. mod1Mask       , xK_h )	        , sendMessage Shrink)
+        , ((modm .|. mod1Mask       , xK_h )            , sendMessage Shrink)
         --, ((modm                    , xK_t )            , return ())
-        , ((modm .|. mod1Mask		, xK_t )	        , addWorkspacePrompt defaultXPConfig)
+        , ((modm .|. mod1Mask       , xK_t )            , addWorkspacePrompt defaultXPConfig)
         --, ((modm                    , xK_n )            , return ())
         --, ((modm .|. mod1Mask       , xK_n )            , return ())
         --, ((modm                    , xK_s )            , return ())
-        --, ((modm .|. mod1Mask       , xK_s )            , return ())
+        , ((modm .|. mod1Mask       , xK_s )            , withFocused $ windows . W.sink)
         --, ((modm                    , xK_minus )        , return ())
         --, ((modm .|. mod1Mask       , xK_minus )        , return ())
-        
+
         -- BOTTOM ROW (PROGRAMMER DVORAK)
         --, ((modm                    , xK_colon )        , return ())
         --, ((modm .|. mod1Mask       , xK_colon )        , return ())
-   	    , ((modm              	    , xK_q )	        , spawn "xmonad --recompile; xmonad --restart")
-    	, ((modm .|. mod1Mask	    , xK_q )	        , io (exitWith ExitSuccess))
-        , ((modm               	    , xK_j )	        , windows W.focusDown)
-        , ((modm .|. mod1Mask	    , xK_j )	        , windows W.swapDown)
-        , ((modm               	    , xK_k )	        , windows W.focusUp)
-        , ((modm .|. mod1Mask	    , xK_k )	        , windows W.swapUp)
+        , ((modm                    , xK_q )            , spawn "xmonad --recompile; xmonad --restart")
+        , ((modm .|. mod1Mask       , xK_q )            , io (exitWith ExitSuccess))
+        , ((modm                    , xK_j )            , windows W.focusDown)
+        , ((modm .|. mod1Mask       , xK_j )            , windows W.swapDown)
+        , ((modm                    , xK_k )            , windows W.focusUp)
+        , ((modm .|. mod1Mask       , xK_k )            , windows W.swapUp)
         --, ((modm                    , xK_x )            , return ())
         --, ((modm .|. mod1Mask       , xK_x )            , return ())
-        , ((modm                    , xK_b )	        , selectWorkspace defaultXPConfig)
-        , ((modm               	    , xK_m )	        , windows W.focusMaster)
+        , ((modm                    , xK_b )            , selectWorkspace defaultXPConfig)
+        , ((modm                    , xK_m )            , windows W.focusMaster)
         , ((modm .|. mod1Mask       , xK_m )            , spawn "urxvtc -title mutt -name mutt -e mutt")
         --, ((modm                    , xK_w )            , return ())
         --, ((modm .|. mod1Mask       , xK_w )            , return ())
@@ -165,12 +165,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
 -- Layout
 myLayoutHook = avoidStruts (tiled ||| Circle ||| Grid ||| spiral (6/7)) ||| full
-	where
-		tiled = Tall nmaster delta ratio
-		nmaster = 1
-		ratio = 1/2
-		delta = 3/100
-		full = noBorders $ Full
+  where
+    tiled = Tall nmaster delta ratio
+    nmaster = 1
+    ratio = 1/2
+    delta = 3/100
+    full = noBorders $ Full
 
 -- Colors
 colorYellow   = "#af8700"
@@ -208,24 +208,24 @@ myLogHook h = dynamicLogWithPP $ defaultPP
 --myManageHook = composeAll [ className =? "Firefox" --> doShift "www" ]
 
 main = do
-  dzenLeftBar <- spawnPipe myXmonadBar	
+  dzenLeftBar <- spawnPipe myXmonadBar
   xmonad $ defaultConfig
-		{ terminal		          = myTerminal
-		, focusFollowsMouse	      = myFocusFollowsMouse
-		, borderWidth		      = myBorderWidth
-		, modMask		          = myModMask
-		, workspaces		      = myWorkspaces
-		, normalBorderColor	      = myNormalBorderColor
-		, focusedBorderColor	  = myFocusedBorderColor
+    { terminal            = myTerminal
+    , focusFollowsMouse   = myFocusFollowsMouse
+    , borderWidth         = myBorderWidth
+    , modMask             = myModMask
+    , workspaces          = myWorkspaces
+    , normalBorderColor   = myNormalBorderColor
+    , focusedBorderColor  = myFocusedBorderColor
 
-		-- key bindings
-		, keys			          = myKeys
-		--, mouseBindings		= myMouseBindings
+    -- key bindings
+    , keys                = myKeys
+    --, mouseBindings       = myMouseBindings
 
-		-- hooks, layouts
-		, layoutHook		      = myLayoutHook
-		--, manageHook		      = manageHook defaultConfig <+> myManageHook
-		--, handleEventHook	= myEventHook
-	    , logHook		          = myLogHook dzenLeftBar >> setWMName "LG3D"
-		--, startupHook		= myStarupHook
-		}
+    -- hooks, layouts
+    , layoutHook          = myLayoutHook
+    --, manageHook          = manageHook defaultConfig <+> myManageHook
+    --, handleEventHook     = myEventHook
+    , logHook             = myLogHook dzenLeftBar >> setWMName "LG3D"
+    --, startupHook         = myStarupHook
+    }
