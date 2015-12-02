@@ -42,6 +42,9 @@ alias refresh='source ~/.zshrc'
 alias dev='cd ~/src/github.com/oldmanmike'
 alias github='cd ~/src/github.com'
 alias :r='stack build'
+alias gs='git status'
+alias gd='git diff'
+alias gds='git diff --stat'
 
 # Completion
 zmodload zsh/complist
