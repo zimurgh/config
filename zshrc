@@ -27,7 +27,7 @@ SAVEHIST=1000
 
 # Variables
 color='red'
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/oldmanmike/bin:/home/oldmanmike/.cabal/bin:/home/oldmanmike/.local/bin:/home/oldmanmike/.gem/ruby/2.2.0/bin
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/oldmanmike/bin:/home/oldmanmike/.cabal/bin:/home/oldmanmike/.local/bin:/home/oldmanmike/.gem/ruby/2.2.0/bin:/home/oldmanmike/src/github.com/oldmanmike/opensandbox/.stack-work/dist/x86_64-linux/Cabal-1.22.4.0/build/minecraftctl
 export BROWSER="firefox"
 export EDITOR="vim"
 export PDF="zathura"
@@ -42,9 +42,11 @@ alias refresh='source ~/.zshrc'
 alias dev='cd ~/src/github.com/oldmanmike'
 alias github='cd ~/src/github.com'
 alias :r='stack build'
+alias ga='git add'
 alias gs='git status'
 alias gd='git diff'
 alias gds='git diff --stat'
+alias music='zsh -c ncmpcpp'
 
 # Completion
 zmodload zsh/complist

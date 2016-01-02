@@ -37,6 +37,7 @@ import XMonad.Prompt.Workspace
 import XMonad.Prompt.Window
 import XMonad.Prompt.XMonad
 -- Utils
+import XMonad.Util.Paste
 import XMonad.Util.Run
 
 
@@ -45,13 +46,16 @@ myTerminal = "urxvtc"
 myFocusFollowsMouse = True
 myBorderWidth = 2
 myModMask = controlMask
-myWorkspaces = ["$","blog","chat","dev","doc","haskellmade-hero","log","minecraft","music","monitor","openmw","reddit","steam","video"]
+myWorkspaces = ["$","blog","chat","dev","doc","log","music","monitor","video"]
 myNormalBorderColor = "grey"
 myFocusedBorderColor = "green"
 
 
 -- Dzen
 myXmonadBar = "dzen2 -x '0' -y '0' -h '20' -w '1920' -ta 'l' -fg '#F0F8FF' -bg '#1B1D1E'"
+
+-- XMobar
+myXMobar = "xmobar"
 
 -- Key bindings
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
@@ -161,6 +165,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
         --, ((modm .|. mod1Mask       , xK_v )            , return ())
         --, ((modm                    , xK_z )            , return ())
         , ((modm .|. mod1Mask       , xK_z )            , spawn "zathura")
+
+        -- MISC KEYS (PROGRAMMER DVORAK)
+        , ((modm                    , xK_Insert)        , pasteSelection)
         ]
 
 -- Layout
@@ -194,22 +201,31 @@ base3         = "#ffffd7"
 
 -- Log Hooks
 myLogHook h = dynamicLogWithPP $ defaultPP
-  { ppCurrent         = dzenColor "#ebac54" "#1B1D1E" . pad
-  , ppVisible         = dzenColor "cyan" "#1B1D1E" . pad
-  , ppHidden          = dzenColor "#f0f8ff" "#1B1D1E" . pad
-  , ppHiddenNoWindows = dzenColor "#7b7b7b" "#1B1D1E" . pad
-  , ppUrgent          = dzenColor "#ff0000" "#1B1D1E" . pad
+  { ppCurrent         = xmobarColor "#ebac54" "#1B1D1E" . pad
+  , ppVisible         = xmobarColor "cyan"    "#1B1D1E" . pad
+  , ppHidden          = xmobarColor "#f0f8ff" "#1B1D1E" . pad
+  , ppHiddenNoWindows = xmobarColor "#7b7b7b" "#1B1D1E" . pad
+  , ppUrgent          = xmobarColor "#ff0000" "#1B1D1E" . pad
   , ppWsSep           = " "
   , ppSep             = "  |  "
-  , ppTitle           = (" " ++) . dzenColor "#f0f8ff" "#1B1D1E" . dzenEscape
+  , ppTitle           = (" " ++) . xmobarColor "#f0f8ff" "#1B1D1E"
   , ppOutput          = hPutStrLn h
-   }
+  }
 
---myManageHook = composeAll [ className =? "Firefox" --> doShift "www" ]
+myManageHook =
+    composeAll  [ className =? "Steam"
+                  --> (liftX $ addHiddenWorkspace "games") >> doShift "games"
+                , title =? "Minecraft Launcher"
+                  --> (liftX $ addHiddenWorkspace "games") >> doShift "games"
+                ]
+
+myEventHook = undefined
+
+myStartupHook = undefined
 
 main = do
-  dzenLeftBar <- spawnPipe myXmonadBar
-  xmonad $ defaultConfig
+  statusBar <- spawnPipe myXMobar
+  xmonad =<< xmobar defaultConfig
     { terminal            = myTerminal
     , focusFollowsMouse   = myFocusFollowsMouse
     , borderWidth         = myBorderWidth
@@ -224,8 +240,8 @@ main = do
 
     -- hooks, layouts
     , layoutHook          = myLayoutHook
-    --, manageHook          = manageHook defaultConfig <+> myManageHook
+    , manageHook          = manageHook defaultConfig <+> myManageHook
     --, handleEventHook     = myEventHook
-    , logHook             = myLogHook dzenLeftBar >> setWMName "LG3D"
-    --, startupHook         = myStarupHook
+    , logHook             = myLogHook statusBar >> setWMName "LG3D"
+    --, startupHook         = myStartupHook
     }
