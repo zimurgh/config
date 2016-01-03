@@ -47,6 +47,7 @@ alias gs='git status'
 alias gd='git diff'
 alias gds='git diff --stat'
 alias music='zsh -c ncmpcpp'
+alias ws='wine .wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe'
 
 # Completion
 zmodload zsh/complist
