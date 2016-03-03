@@ -17,9 +17,9 @@ set shell=zsh
 """""""""""""""""""""""""""""""""""""""""""""
 " Haskellmode-vim
 """""""""""""""""""""""""""""""""""""""""""""
-au BufEnter *.hs compiler ghc
-let g:ghc="/usr/bin/ghc"
-let g:haddock_browser="/usr/bin/firefox"
+"au BufEnter *.hs compiler ghc
+"let g:ghc="/usr/bin/ghc"
+"let g:haddock_browser="/usr/bin/firefox"
 
 
 """""""""""""""""""""""""""""""""""""""""""""
@@ -47,9 +47,9 @@ set encoding=utf8
 " Text, Tab, and Indent
 """""""""""""""""""""""""""""""""""""""""""""
 set expandtab
-set tabstop=8 " number of visual spaces per TAB
-set softtabstop=4
-set shiftwidth=4
+set tabstop=4 " number of visual spaces per TAB
+set softtabstop=2
+set shiftwidth=2
 set smarttab
 set shiftround
 set nojoinspaces
@@ -102,6 +102,8 @@ set hlsearch            " highlight matches
 """""""""""""""""""""""""""""""""""""""""""""
 autocmd filetype tex setlocal spell spelllang=en_us " spellcheck all .tex files in en_us
 autocmd filetype txt setlocal spell spelllang=en_us " spellcheck all .txt files in en_us
+autocmd filetype md setlocal spell spelllang=en_us " spellcheck all .md files in en_us
+autocmd filetype markdown setlocal spell spelllang=en_us " spellcheck all .markdown files in en_us
 augroup MUTT
   au BufRead ~/.mutt/temp/mutt* set spell           " spellcheck email drafts in mutt
 augroup END
