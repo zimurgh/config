@@ -17,9 +17,9 @@ set shell=zsh
 """""""""""""""""""""""""""""""""""""""""""""
 " Haskellmode-vim
 """""""""""""""""""""""""""""""""""""""""""""
-au BufEnter *.hs compiler ghc
-let g:ghc="/usr/bin/ghc"
-let g:haddock_browser="/usr/bin/firefox"
+"au BufEnter *.hs compiler ghc
+"let g:ghc="/usr/bin/ghc"
+"let g:haddock_browser="/usr/bin/firefox"
 
 
 """""""""""""""""""""""""""""""""""""""""""""
@@ -43,13 +43,15 @@ set background=dark
 colorscheme solarized
 set encoding=utf8
 
+au BufNewFile,BufRead *.nxc set filetype=c
+
 """""""""""""""""""""""""""""""""""""""""""""
 " Text, Tab, and Indent
 """""""""""""""""""""""""""""""""""""""""""""
 set expandtab
-set tabstop=8 " number of visual spaces per TAB
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2 " number of visual spaces per TAB
+set softtabstop=2
+set shiftwidth=2
 set smarttab
 set shiftround
 set nojoinspaces
