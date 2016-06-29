@@ -16,7 +16,8 @@ SAVEHIST=1000
 
 # Variables
 color='red'
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/oldmanmike/bin:/home/oldmanmike/.cabal/bin:/home/oldmanmike/.local/bin:/home/oldmanmike/.gem/ruby/2.2.0/bin:/home/oldmanmike/src/github.com/oldmanmike/opensandbox/.stack-work/dist/x86_64-linux/Cabal-1.22.4.0/build/minecraftctl
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/home/oldmanmike/bin:/home/oldmanmike/.cabal/bin:/home/oldmanmike/.local/bin:/home/oldmanmike/.gem/ruby/2.2.0/bin:/home/oldmanmike/src/github.com/oldmanmike/opensandbox/.stack-work/dist/x86_64-linux/Cabal-1.22.4.0/build/minecraftctl:/home/oldmanmike/src/github.com/oldmanmike/kaleidoscope/.stack-work/install/x86_64-linux/lts-6.5/7.10.3/bin
+
 export BROWSER="firefox"
 export EDITOR="vim"
 export PDF="zathura"
