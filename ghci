@@ -3,5 +3,14 @@ let ghciEscapeShellArg arg = "'" ++ concatMap (\c -> if c == '\'' then "'\"'\"'"
 :def! doc \x -> return $ ":!hoogle --color --info \"" ++ x ++ "\""
 :def! hoogle \x -> return $ ":!hoogle --color \"" ++ x ++ "\""
 :def! clear return . (":!clear " ++) . ghciEscapeShellArg
-:set -fdefer-type-errors
 :set prompt "λ> "
+:set -fdefer-type-errors
+:set -XOverloadedStrings
+:set -XOverloadedLists
+import Control.Monad
+import Data.Bits
+import qualified Data.ByteString as B
+import qualified Data.ByteString.Lazy as BL
+import qualified Data.ByteString.Builder as Encode
+import qualified Data.Text as T
+import qualified Data.Vector as V
