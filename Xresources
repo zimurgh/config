@@ -1,67 +1,3 @@
-! Common
-
-#define S_yellow                #af8700
-#define S_orange                #d75f00
-#define S_red                   #d70000
-#define S_magenta               #af005f
-#define S_violet                #5f5faf
-#define S_blue                  #0087ff
-#define S_cyan                  #00afaf
-#define S_green                 #5f8700
-
-
-! Dark
-
-#define S_base03                #1c1c1c
-#define S_base02                #262626
-#define S_base01                #585858
-#define S_base00                #626262
-#define S_base0                 #808080
-#define S_base1                 #8a8a8a
-#define S_base2                 #e4e4e4
-#define S_base3                 #ffffd7
-
-! Light
-
-!#define S_base03                #fdf6e3
-!#define S_base02                #eee8d5
-!#define S_base01                #93a1a1
-!#define S_base00                #839496
-!#define S_base0                 #657b83
-!#define S_base1                 #586e75
-!#define S_base2                 #073642
-!#define S_base3                 #002b36
-
-
-URxvt*background:               S_base03
-URxvt*foreground:               S_base0
-!URxvt*fading:                   40
-!URxvt*fadeColor:                S_base03
-URxvt*cursorColor:              S_base1
-URxvt*pointerColorBackground:   S_base01
-URxvt*pointerColorForeground:   S_base1
-
-URxvt*color0:                   S_base02
-URxvt*color1:                   S_red
-URxvt*color2:                   S_green
-URxvt*color3:                   S_yellow
-URxvt*color4:                   S_blue
-URxvt*color5:                   S_magenta
-URxvt*color6:                   S_cyan
-URxvt*color7:                   S_base2
-URxvt*color8:                   S_orange
-URxvt*color9:                   S_base03
-URxvt*color10:                  S_base01
-URxvt*color11:                  S_base00
-URxvt*color12:                  S_base0
-URxvt*color13:                  S_violet
-URxvt*color14:                  S_base1
-URxvt*color15:                  S_base3
-
-URxvt.colorIT:                  S_magenta
-URxvt.colorBD:                  S_cyan
-URxvt.colorUL:                  S_orange
-
 URxvt*loginShell:               true
 URxvt.scrollBar:                false
 URxvt.scrollstyle:              plain
@@ -72,3 +8,54 @@ URxvt.url-select.launcher:      /usr/bin/firefox -new-tab
 URxvt.url-select.underline:     true
 URxvt.imLocale:                 en_US.utf8
 URxvt.font:                     xft:Terminus:medium:antialias=true:hinting=true:pixelsize=16
+
+! Base16 Monokai
+! Scheme: Wimer Hazenberg (http://www.monokai.nl)
+
+#define base00 #272822
+#define base01 #383830
+#define base02 #49483e
+#define base03 #75715e
+#define base04 #a59f85
+#define base05 #f8f8f2
+#define base06 #f5f4f1
+#define base07 #f9f8f5
+#define base08 #f92672
+#define base09 #fd971f
+#define base0A #f4bf75
+#define base0B #a6e22e
+#define base0C #a1efe4
+#define base0D #66d9ef
+#define base0E #ae81ff
+#define base0F #cc6633
+
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
