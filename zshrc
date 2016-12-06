@@ -30,6 +30,8 @@ alias scan='sudo ip link set wlp3s0 up && sudo iw dev wlp3s0 scan | less'
 alias keyboard='setxkbmap -layout us -variant dvp -option compose:102 -option numpad:shift3 -option kpdl:semi -option keypad:atm -option caps:shift && setxkbmap -option ctrl:swapcaps'
 alias refresh='source ~/.zshrc'
 alias dev='cd ~/src/github.com/oldmanmike'
+alias cb='cargo build'
+alias ct='cargo test'
 alias github='cd ~/src/github.com'
 alias :r='stack build'
 alias ga='git add'
@@ -41,6 +43,14 @@ alias gds='git diff --stat'
 alias gl='git log'
 alias music='zsh -c ncmpcpp'
 alias ws='wine .wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe'
+
+alias m='dev && cd mandala'
+alias mm='dev && cd mandala/components'
+alias mc='dev && cd mandala/apps/client'
+alias ms='dev && cd mandala/apps/server'
+alias mt='dev && cd mandala/tests'
+
+alias v='vim'
 
 # Completion
 zmodload zsh/complist
