@@ -38,9 +38,8 @@ let g:necoghc_enable_detailed_browse = 1
 " Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""
 syntax enable
-let g:solarized_termcolors=256
 set background=dark
-colorscheme solarized
+colorscheme monokai
 set encoding=utf8
 
 au BufNewFile,BufRead *.nxc set filetype=c
