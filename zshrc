@@ -49,6 +49,9 @@ alias mm='dev && cd mandala/components'
 alias mc='dev && cd mandala/apps/client'
 alias ms='dev && cd mandala/apps/server'
 alias mt='dev && cd mandala/tests'
+alias mmm='dev && cd mandala/components/mandala'
+alias mml='dev && cd mandala/components/logger'
+alias mmn='dev && cd mandala/components/net'
 
 alias v='vim'
 
