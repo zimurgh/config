@@ -7,7 +7,8 @@ URxvt.keysym.M-u:               perl:url-select:select_next
 URxvt.url-select.launcher:      /usr/bin/firefox -new-tab
 URxvt.url-select.underline:     true
 URxvt.imLocale:                 en_US.utf8
-URxvt.font:                     xft:Terminus:medium:antialias=true:hinting=true:pixelsize=16
+URxvt.font:                     -xos4-terminus-medium-r-normal-*-16-*-*-*-*-*-*-*
+URxvt.letterSpace: 1
 
 ! Base16 Monokai
 ! Scheme: Wimer Hazenberg (http://www.monokai.nl)
