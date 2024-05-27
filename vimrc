@@ -1,13 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""
 "   File:       .vimrc  Vim Config file     "
 "   Author:     Michael Carpenter           "
-"   Date:       22/9/14                     "
+"   Date:       2024-05-27                  "
 """""""""""""""""""""""""""""""""""""""""""""
         
 """""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""
-call pathogen#infect()
 set history=500
 filetype plugin on
 filetype indent on
@@ -15,31 +14,11 @@ set autoread
 set shell=zsh
 
 """""""""""""""""""""""""""""""""""""""""""""
-" Haskellmode-vim
-"""""""""""""""""""""""""""""""""""""""""""""
-"au BufEnter *.hs compiler ghc
-"let g:ghc="/usr/bin/ghc"
-"let g:haddock_browser="/usr/bin/firefox"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""
-" Neocomplcache 
-"""""""""""""""""""""""""""""""""""""""""""""
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_force_overwrite_completefunc = 1
-let g:neocomplcache_fuzzy_completion_start_length = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""
-" Neco-ghc
-"""""""""""""""""""""""""""""""""""""""""""""
-let g:necoghc_enable_detailed_browse = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""
 " Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 set background=dark
-colorscheme monokai
+colorscheme retrobox
 set encoding=utf8
 
 au BufNewFile,BufRead *.nxc set filetype=c
@@ -55,7 +34,6 @@ set smarttab
 set shiftround
 set nojoinspaces
 set lbr
-"set tw=100
 
 set ai
 set si
@@ -94,15 +72,12 @@ set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 
 """""""""""""""""""""""""""""""""""""""""""""
-"set foldenable          " enable folding
-"set foldlevelstart=5    " how many folds should be opened
-"set foldnestmax=10      " 10 nested fold max
-"set foldmethod=indent   " fold based on indent level
-"""""""""""""""""""""""""""""""""""""""""""""
 " Spell Check
 """""""""""""""""""""""""""""""""""""""""""""
-autocmd filetype tex setlocal spell spelllang=en_us " spellcheck all .tex files in en_us
-autocmd filetype txt setlocal spell spelllang=en_us " spellcheck all .txt files in en_us
+autocmd filetype tex  setlocal spell spelllang=en_us " spellcheck all .tex files in en_us
+autocmd filetype txt  setlocal spell spelllang=en_us " spellcheck all .txt files in en_us
+autocmd filetype md   setlocal spell spelllang=en_us " spellcheck all .md files in en_us
+
 augroup MUTT
   au BufRead ~/.mutt/temp/mutt* set spell           " spellcheck email drafts in mutt
 augroup END
