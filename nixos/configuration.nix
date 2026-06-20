@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -10,27 +6,25 @@
       ./hardware-configuration.nix
     ];
 
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "raven"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
+  networking.hostName = "calcifer"; 
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+  networking.wireless.iwd = {
+    enable = true;
+    settings = {
+      Settings = {
+        AutoConnect = true;
+      };
+    };
+  };
 
-  # Set your time zone.
   time.timeZone = "America/New_York";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -46,16 +40,15 @@
   };
 
   console = {
+    font = "Lat2-Terminus16";
     keyMap = "dvorak-programmer";
   };
 
-  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "dvp";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."michael" = {
     isNormalUser = true;
     description = "Michael";
@@ -64,11 +57,8 @@
     packages = with pkgs; [];
   };
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
     vim
@@ -92,6 +82,10 @@
     waybar
     swaylock
     brave
+  ];
+
+  fonts.packages = with pkgs; [
+    font-awesome_4
   ];
 
   programs.java.enable = true;
