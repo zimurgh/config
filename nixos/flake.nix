@@ -15,6 +15,7 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, niri, fenix, ... }:
@@ -34,21 +35,36 @@
         ];
       };
 
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          rust.toolchain
-          rust.analyzer
-          pkg-config
-          openssl
-          clang
-          lldb
-          taplo
-        ];
+      devShells.${system} = {
+        default = pkgs.mkShell {
+          packages = with pkgs; [
+            rust.toolchain
+            rust.analyzer
+            pkg-config
+            openssl
+            clang
+            lldb
+            taplo
+          ];
 
-        shellHook = ''
-          export RUST_SRC_PATH="${rust.rustSrcPath}"
-          export OPENSSL_NO_VENDOR=1
-        '';
+          shellHook = ''
+            export RUST_SRC_PATH="${rust.rustSrcPath}"
+            export OPENSSL_NO_VENDOR=1
+          '';
+        };
+
+        java = import ./java.nix pkgs;
+        node = import ./node.nix pkgs;
+        haskell = import ./haskell.nix pkgs;
+        python = import ./python.nix pkgs;
+        python3 = import ./python.nix pkgs;
+        zig = import ./zig.nix pkgs;
+        typst = import ./typst.nix pkgs;
+        go = import ./go.nix pkgs;
+        lua = import ./lua.nix pkgs;
+        julia = import ./julia.nix pkgs;
+        cpp = import ./cpp.nix pkgs;
+        cxx = import ./cpp.nix pkgs;
       };
     };
 }

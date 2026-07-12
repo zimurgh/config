@@ -73,10 +73,6 @@
     asm-lsp
     gcc
 
-    # Java
-    jdk25
-    jdt-language-server
-
     # C/C++
     clang-tools
     
@@ -86,11 +82,6 @@
     # Typst
     typst
     tinymist
-
-    # Typescript / JS
-    nodejs
-    vscode-langservers-extracted
-    typescript-language-server
 
     # Lua
     lua-language-server
@@ -163,7 +154,6 @@
     vim
     helix
     neovim
-    gradle
     btop
     gdb
     bpftrace
@@ -201,8 +191,6 @@
   ];
 
   programs.thunderbird.enable = true;
-  programs.java.enable = true;
-  programs.java.package = pkgs.jdk25;
   programs.niri.enable = true;
   programs.wireshark = {
     enable = true;
@@ -279,10 +267,12 @@
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
+      "https://noctalia.cachix.org"
       "https://fenix.cachix.org"
       "https://cache.nixos.org"
     ];
     trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       "fenix.cachix.org-1:2si4EVhRc/a5SVoymnQIyHck3Gtik+pkEUA1K338sqE="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbJsOco2x5NxHjr9c/acys/vT0="
     ];

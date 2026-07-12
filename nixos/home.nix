@@ -7,6 +7,7 @@ in
 {
   imports = [
     inputs.niri.homeModules.niri
+    ./noctalia.nix
   ];
   home.username = "michael";
   home.homeDirectory = "/home/michael";
