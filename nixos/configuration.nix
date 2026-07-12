@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -44,11 +45,6 @@
     keyMap = "dvorak-programmer";
   };
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "dvp";
-  };
-
   users.users."michael" = {
     isNormalUser = true;
     description = "Michael";
@@ -60,39 +56,159 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+
+    # ASM
+    nasm
+    fasm
+    yasm
+    binutils
+    asm-lsp
+    gcc
+
+    # Rust
+    rustc
+    cargo
+    taplo
+    tokei
+    rust-analyzer
+    lldb
+
+    # Java
+    jdk25
+    jdt-language-server
+
+    # C/C++
+    clang-tools
+    
+    # Zig
+    zig
+
+    # Typst
+    typst
+    tinymist
+
+    # Typescript / JS
+    nodejs
+    vscode-langservers-extracted
+    typescript-language-server
+
+    # Lua
+    lua-language-server
+
+    # Julia
+    julia
+
+    # Nix
+    nil
+
+    # Yaml
+    yaml-language-server
+
+    # Bash
+    bash-language-server
+
+    # Awk
+    awk-language-server
+
+    # Wasm/Wat
+    wasm-language-tools
+
+    # Web GPU / WGSL
+    wgsl-analyzer
+
+    # Lean
+    lean
+
+    # Markdown
+    marksman
+
+    # Nim
+    nimlangserver
+
+    # LaTeX
+    texlab 
+
+    # Ruby
+    ruby-lsp
+
+    # Fish
+    fish-lsp
+
+    # Fortran
+    fortls
+
+    # Go
+    gopls
+
+    # Terraform
+    terraform-ls
+
+    # Erlang
+    erlang-language-platform
+
+    # Clojure
+    clojure-lsp
+
+    # Crystal
+    crystalline
+
+    # Systemd
+    systemd-lsp
+
+    ghidra
+    nmap
+
+    # Devtools
     git
     vim
     helix
+    neovim
+    gradle
     btop
+    gdb
     bpftrace
     nushell
     wget
-    rustc
-    cargo
-    zig
-    neovim
+    starship
     yazi
     ripgrep
-    gradle
-    typst
-    jdk25
-    alacritty
-    kitty
+    tokei
+    unzip
+
+    # Niri stuff
+    niri
     fuzzel
     waybar
     swaylock
+
+    # Desktop Apps    
+    alacritty
+    kitty
     brave
+    bitwig-studio
+    xwayland-satellite
+    openmw
+    renderdoc
+    prismlauncher
+    onlyoffice-desktopeditors
+
+    code-cursor
   ];
 
   fonts.packages = with pkgs; [
-    font-awesome_4
+    font-awesome
+    nerd-fonts.fira-code
+    corefonts # Onlyoffice
   ];
 
+  programs.thunderbird.enable = true;
   programs.java.enable = true;
   programs.java.package = pkgs.jdk25;
-
   programs.niri.enable = true;
-
+  programs.wireshark = {
+    enable = true;
+  };
+  
   programs.git = {
     enable = true;
     config = {
@@ -104,11 +220,13 @@
     };
   };
 
-  services.displayManager.sddm = {
+  programs.steam = {
     enable = true;
-    wayland.enable = true;
   };
-  
+
+ 
+  security.rtkit.enable = true;
+ 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -119,23 +237,46 @@
 
   # List services that you want to enable:
 
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "dvp";
+  };
+
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;
+  };
+
+  services.minecraft-server = {
+    enable = true;
+    eula = true;
+  };
+
+  services.printing.enable = true;
+
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+      AllowUsers = [ "michael" ];
+      MaxAuthTries = 3;
+    };
+  };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.allowedTCPPorts = [ 25565 443 80 22 ];
+  networking.firewall.allowedUDPPorts = [];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "26.05"; # Did you read the comment?
-
+  system.stateVersion = "26.05"; 
 }
