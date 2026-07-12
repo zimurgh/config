@@ -1,4 +1,9 @@
 { config, pkgs, inputs, ... }:
+
+let
+  rust = import ./rust.nix inputs.fenix.packages.${pkgs.system};
+in
+
 {
   imports = [
     inputs.niri.homeModules.niri
@@ -7,9 +12,19 @@
   home.homeDirectory = "/home/michael";
   home.stateVersion = "26.05";
 
+  home.sessionVariables = {
+    RUST_SRC_PATH = rust.rustSrcPath;
+    OPENSSL_NO_VENDOR = "1";
+  };
+
   home.packages = with pkgs; [
     htop
     fortune
+    rust.toolchain
+    rust.analyzer
+    taplo
+    tokei
+    lldb
   ];
 
 

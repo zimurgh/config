@@ -73,14 +73,6 @@
     asm-lsp
     gcc
 
-    # Rust
-    rustc
-    cargo
-    taplo
-    tokei
-    rust-analyzer
-    lldb
-
     # Java
     jdk25
     jdt-language-server
@@ -180,7 +172,6 @@
     starship
     yazi
     ripgrep
-    tokei
     unzip
 
     # Niri stuff
@@ -285,6 +276,16 @@
   networking.firewall.allowedTCPPorts = [ 25565 443 80 22 ];
   networking.firewall.allowedUDPPorts = [];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    substituters = [
+      "https://fenix.cachix.org"
+      "https://cache.nixos.org"
+    ];
+    trusted-public-keys = [
+      "fenix.cachix.org-1:2si4EVhRc/a5SVoymnQIyHck3Gtik+pkEUA1K338sqE="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbJsOco2x5NxHjr9c/acys/vT0="
+    ];
+  };
   system.stateVersion = "26.05"; 
 }
