@@ -25,11 +25,41 @@ in
     taplo
     tokei
     lldb
+    mpc
   ];
 
 
   programs.home-manager.enable = true;
   programs.emacs.enable = true;
+
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+  };
+
+  services.mpd = {
+    enable = true;
+    network.listenAddress = "127.0.0.1";
+    network.port = 6600;
+    extraConfig = ''
+      audio_output {
+        type "pipewire"
+        name "PipeWire Output"
+      }
+    '';
+  };
+
+  services.mpd-mpris.enable = true;
+
+  programs.ncmpcpp = {
+    enable = true;
+    settings = {
+      ncmpcpp_directory = "${config.xdg.dataHome}/ncmpcpp";
+      mpd_host = "127.0.0.1";
+      mpd_port = 6600;
+      ignore_leading_the = true;
+    };
+  };
 
   home.file."${config.xdg.configHome}/starship.toml".source =
     ./config/starship.toml;
