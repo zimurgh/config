@@ -1,4 +1,4 @@
-fenixPkgs:
+{ pkgs, fenixPkgs }:
 
 let
   stable = fenixPkgs.fromToolchainName {
@@ -12,9 +12,26 @@ let
     "rust-src"
     "rustfmt"
   ];
-in
-{
-  inherit toolchain;
   analyzer = fenixPkgs.rust-analyzer;
   rustSrcPath = "${stable.rust-src}/lib/rustlib/src/rust/library";
+in
+{
+  inherit toolchain analyzer rustSrcPath;
+
+  devShell = pkgs.mkShell {
+    packages = with pkgs; [
+      toolchain
+      analyzer
+      pkg-config
+      openssl
+      clang
+      lldb
+      taplo
+    ];
+
+    shellHook = ''
+      export RUST_SRC_PATH="${rustSrcPath}"
+      export OPENSSL_NO_VENDOR=1
+    '';
+  };
 }

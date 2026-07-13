@@ -5,6 +5,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./databases.nix
     ];
 
   home-manager = {
@@ -64,31 +65,18 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    pciutils
+    qemu
+
 
     # ASM
     nasm
-    fasm
-    yasm
     binutils
-    asm-lsp
     gcc
 
     # C/C++
     clang-tools
     
-    # Zig
-    zig
-
-    # Typst
-    typst
-    tinymist
-
-    # Lua
-    lua-language-server
-
-    # Julia
-    julia
-
     # Nix
     nil
 
@@ -128,9 +116,6 @@
     # Fortran
     fortls
 
-    # Go
-    gopls
-
     # Terraform
     terraform-ls
 
@@ -151,9 +136,7 @@
 
     # Devtools
     git
-    vim
     helix
-    neovim
     btop
     gdb
     bpftrace
