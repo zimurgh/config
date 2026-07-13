@@ -28,16 +28,21 @@
       pkgs = nixpkgs.legacyPackages.${system};
       fenixPkgs = fenix.packages.${system};
       rust = import ./rust.nix { inherit pkgs fenixPkgs; };
-    in
-    {
-      nixosConfigurations.calcifer = nixpkgs.lib.nixosSystem {
+
+      mkHost = hostModule: nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs; };
         modules = [
           home-manager.nixosModules.home-manager
           ./configuration.nix
+          hostModule
         ];
       };
+    in
+    {
+      nixosConfigurations.calcifer = mkHost ./hosts/calcifer.nix;
+      # Uncomment after copying hosts/desktop/hardware-configuration.nix.example
+      # nixosConfigurations.desktop = mkHost ./hosts/desktop.nix;
 
       devShells.${system} = {
         default = rust.devShell;
@@ -48,6 +53,7 @@
         python3 = import ./python.nix pkgs;
         zig = import ./zig.nix pkgs;
         typst = import ./typst.nix pkgs;
+        latex = import ./latex.nix pkgs;
         go = import ./go.nix pkgs;
         lua = import ./lua.nix pkgs;
         julia = import ./julia.nix pkgs;

@@ -1,12 +1,9 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      # ./databases.nix
-    ];
+  imports = [
+    # ./databases.nix
+  ];
 
   home-manager = {
     useGlobalPkgs = true;
@@ -20,18 +17,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "calcifer"; 
-  networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
-  networking.wireless.iwd = {
-    enable = true;
-    settings = {
-      Settings = {
-        AutoConnect = true;
-      };
-    };
-  };
 
   time.timeZone = "America/New_York";
 
@@ -57,7 +42,7 @@
   users.users."michael" = {
     isNormalUser = true;
     description = "Michael";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "wheel" ];
     shell = pkgs.nushell;
     packages = with pkgs; [];
   };
@@ -65,6 +50,8 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    eza
+    fd
     pciutils
     qemu
 
@@ -96,6 +83,8 @@
     yazi
     ripgrep
     unzip
+    gnuplot
+    curl
 
     # Niri stuff
     niri
@@ -113,7 +102,7 @@
     renderdoc
     prismlauncher
     onlyoffice-desktopeditors
-
+    csound
     code-cursor
   ];
 
@@ -192,9 +181,6 @@
       MaxAuthTries = 3;
     };
   };
-
-  services.power-profiles-daemon.enable = true;
-  services.upower.enable = true;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 25565 443 80 22 ];

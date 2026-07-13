@@ -11,6 +11,7 @@ let
     "clippy"
     "rust-src"
     "rustfmt"
+    "llvm-tools-preview"
   ];
   analyzer = fenixPkgs.rust-analyzer;
   rustSrcPath = "${stable.rust-src}/lib/rustlib/src/rust/library";
@@ -27,6 +28,15 @@ in
       clang
       lldb
       taplo
+      cargo-nextest
+      cargo-llvm-cov
+      cargo-audit
+      cargo-deny
+      cargo-outdated
+      cargo-machete
+      cargo-expand
+      cargo-watch
+      cargo-semver-checks
     ];
 
     shellHook = ''
