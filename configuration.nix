@@ -53,6 +53,7 @@
     eza
     fd
     pciutils
+    mesa-demos # glxinfo, eglinfo, etc.
     qemu
 
     # ASM
@@ -131,6 +132,10 @@
 
   programs.steam = {
     enable = true;
+    package = pkgs.steam.override {
+      # -system-composer alone still black on Niri + xwayland-satellite + Intel iGPU
+      extraArgs = "-cef-disable-gpu-compositing";
+    };
   };
 
  

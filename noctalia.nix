@@ -26,7 +26,8 @@
   programs.niri = {
     enable = true;
     settings = {
-      xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
+      xwayland-satellite.path =
+        lib.getExe inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.xwayland-satellite-unstable;
 
       input.keyboard.xkb = {
         layout = "us";
@@ -56,6 +57,10 @@
           open-floating = true;
           default-column-width.fixed = 1080;
           default-window-height.fixed = 920;
+        }
+        {
+          matches = [ { app-id = "steam"; } ];
+          clip-to-geometry = false;
         }
       ];
 
