@@ -5,7 +5,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./databases.nix
+      # ./databases.nix
     ];
 
   home-manager = {
@@ -68,7 +68,6 @@
     pciutils
     qemu
 
-
     # ASM
     nasm
     binutils
@@ -80,56 +79,7 @@
     # Nix
     nil
 
-    # Yaml
-    yaml-language-server
 
-    # Bash
-    bash-language-server
-
-    # Awk
-    awk-language-server
-
-    # Wasm/Wat
-    wasm-language-tools
-
-    # Web GPU / WGSL
-    wgsl-analyzer
-
-    # Lean
-    lean
-
-    # Markdown
-    marksman
-
-    # Nim
-    nimlangserver
-
-    # LaTeX
-    texlab 
-
-    # Ruby
-    ruby-lsp
-
-    # Fish
-    fish-lsp
-
-    # Fortran
-    fortls
-
-    # Terraform
-    terraform-ls
-
-    # Erlang
-    erlang-language-platform
-
-    # Clojure
-    clojure-lsp
-
-    # Crystal
-    crystalline
-
-    # Systemd
-    systemd-lsp
 
     ghidra
     nmap
@@ -242,6 +192,9 @@
       MaxAuthTries = 3;
     };
   };
+
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 25565 443 80 22 ];

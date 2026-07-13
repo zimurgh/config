@@ -42,8 +42,6 @@ in
     vscode-extensions.vscjava.vscode-java-debug
     vscode-extensions.vscjava.vscode-java-test
     vscode-extensions.vadimcn.vscode-lldb.adapter
-    postgresql
-    mariadb
     tree-sitter
     taplo
     tokei

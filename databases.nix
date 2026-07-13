@@ -37,6 +37,7 @@ in
       User = "postgres";
       RemainAfterExit = true;
     };
+    path = [ config.services.postgresql.package ];
     script = ''
       psql -v ON_ERROR_STOP=1 <<'EOF'
       ALTER DATABASE ${dcimDb} OWNER TO ${dcimUser};
@@ -69,7 +70,7 @@ in
       RemainAfterExit = true;
     };
     script = ''
-      ${pkgs.mariadb}/bin/mysql -u root -v ON_ERROR_STOP=1 <<'EOF'
+      ${pkgs.mariadb}/bin/mysql -u root --batch <<'EOF'
       CREATE USER IF NOT EXISTS '${dcimUser}'@'localhost' IDENTIFIED BY '${dcimPassword}';
       CREATE USER IF NOT EXISTS '${dcimUser}'@'127.0.0.1' IDENTIFIED BY '${dcimPassword}';
       GRANT ALL PRIVILEGES ON ${dcimDb}.* TO '${dcimUser}'@'localhost';

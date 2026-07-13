@@ -29,6 +29,7 @@ for module in \
 do
   sudo cp "$nixos_dir/$module.nix" "/etc/nixos/$module.nix"
 done
+sudo rm -rf /etc/nixos/config
 sudo mkdir -p /etc/nixos/config
 sudo cp -r "$nixos_dir/config/." /etc/nixos/config/
 sudo nixos-rebuild switch --flake /etc/nixos#calcifer

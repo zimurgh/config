@@ -135,11 +135,13 @@ in
       blink-cmp = {
         enable = true;
         settings = {
-          keymap.preset = "default";
+          keymap.preset = "enter";
           sources.default = [ "lsp" "path" "snippets" "buffer" ];
           completion.documentation.auto_show = true;
         };
       };
+
+      web-devicons.enable = true;
 
       telescope = {
         enable = true;
