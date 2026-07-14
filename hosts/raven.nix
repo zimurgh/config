@@ -1,8 +1,7 @@
 { lib, ... }:
 
 {
-  imports = [ ./desktop/hardware-configuration.nix ];
+  imports = [ ./raven/hardware-configuration.nix ];
 
-  networking.hostName = "desktop";
-  networking.useDHCP = lib.mkDefault true;
+  networking.hostName = "raven";
 }

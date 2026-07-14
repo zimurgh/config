@@ -41,8 +41,8 @@
     in
     {
       nixosConfigurations.calcifer = mkHost ./hosts/calcifer.nix;
-      # Uncomment after copying hosts/desktop/hardware-configuration.nix.example
-      # nixosConfigurations.desktop = mkHost ./hosts/desktop.nix;
+      nixosConfigurations.raven = mkHost ./hosts/raven.nix;
+      nixosConfigurations.anansi = mkHost ./hosts/anansi.nix;
 
       devShells.${system} = {
         default = rust.devShell;
