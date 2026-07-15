@@ -62,6 +62,7 @@
         fortran = import ./fortran.nix pkgs;
         agda = import ./agda.nix pkgs;
         odin = import ./odin.nix pkgs;
+        nix = import ./nix.nix pkgs;
       };
     };
 }

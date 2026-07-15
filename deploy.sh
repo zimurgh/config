@@ -42,7 +42,8 @@ for module in \
   fortran \
   agda \
   odin \
-  noctalia
+  noctalia \
+  nix
 do
   sudo cp "$nixos_dir/$module.nix" "/etc/nixos/$module.nix"
 done

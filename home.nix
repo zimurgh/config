@@ -52,6 +52,13 @@ in
   programs.home-manager.enable = true;
   programs.emacs.enable = true;
 
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "tokyonight_storm";
+    };
+  };
+
   xdg.userDirs = {
     enable = true;
     createDirectories = true;

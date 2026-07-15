@@ -66,11 +66,6 @@
     # C/C++
     clang-tools
     
-    # Nix
-    nil
-
-
-
     ghidra
     nmap
 
