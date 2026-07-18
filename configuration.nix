@@ -47,6 +47,9 @@
     extraGroups = [ "wheel" ];
     shell = pkgs.nushell;
     packages = with pkgs; [];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPBnmKW6kk6clOyIhXwWHuTKtAwEgHWxfXVB7W+HHJfw mcarpenter.dev@gmail.com"
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -196,7 +199,6 @@
 
   services.printing.enable = true;
 
-  # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
     openFirewall = true;
