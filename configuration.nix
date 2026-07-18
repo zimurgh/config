@@ -48,8 +48,12 @@
     shell = pkgs.nushell;
     packages = with pkgs; [];
     openssh.authorizedKeys.keys = [
+<<<<<<< Updated upstream
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHbhvT5z9IBhZm+gFDbEpLFVjyBxgE2NGvyrOHNlILI mcarpenter.dev@gmail.com" # raven
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7b1bSa+7/SDBOUmXmwO703/R6V89B4D04w/uv1FOsA mcarpenter.dev@gmail.com" # calcifer
+=======
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7b1bSa+7/SDBOUmXmwO703/R6V89B4D04w/uv1FOsA mcarpenter.dev@gmail.com"
+>>>>>>> Stashed changes
     ];
   };
 
