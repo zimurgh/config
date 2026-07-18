@@ -1,8 +1,8 @@
-{ config, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
-    # ./databases.nix
+    ./databases.nix
   ];
 
   home-manager = {
@@ -57,6 +57,7 @@
     pciutils
     mesa-demos # glxinfo, eglinfo, etc.
     qemu
+    qpwgraph
 
     # ASM
     nasm
@@ -74,7 +75,6 @@
     helix
     btop
     gdb
-    bpftrace
     nushell
     wget
     starship
@@ -83,6 +83,19 @@
     unzip
     gnuplot
     curl
+
+    # eBPF (kernel-matched bcc/bpftrace + tooling)
+    config.boot.kernelPackages.bcc
+    config.boot.kernelPackages.bpftrace
+    config.boot.kernelPackages.kernel.dev
+    bpftools
+    pwru
+    libbpf
+    bpf-linker
+    clang
+    llvm
+    elfutils
+    pahole
 
     # Niri stuff
     niri
@@ -153,9 +166,21 @@
     variant = "dvp";
   };
 
-  services.displayManager.sddm = {
+  services.greetd = {
     enable = true;
-    wayland.enable = true;
+    settings = {
+      default_session = {
+        command = lib.concatStringsSep " " [
+          (lib.getExe pkgs.tuigreet)
+          "--time"
+          "--remember"
+          "--remember-session"
+          "--sessions"
+          "${config.services.displayManager.sessionData.desktops}/share/wayland-sessions"
+        ];
+        user = "greeter";
+      };
+    };
   };
 
   services.pipewire = {

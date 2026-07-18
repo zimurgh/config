@@ -20,6 +20,7 @@
         enabled = true;
         directory = "${config.home.homeDirectory}/Pictures/Wallpapers";
       };
+      widget.media.enabled = false;
     };
   };
 

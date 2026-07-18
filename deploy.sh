@@ -42,6 +42,7 @@ for module in \
   fortran \
   agda \
   odin \
+  lean \
   noctalia \
   nix
 do
