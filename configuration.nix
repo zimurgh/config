@@ -109,15 +109,7 @@
     # Desktop Apps    
     alacritty
     kitty
-    brave
-    bitwig-studio
     xwayland-satellite
-    openmw
-    renderdoc
-    prismlauncher
-    onlyoffice-desktopeditors
-    csound
-    code-cursor
   ];
 
   fonts.packages = with pkgs; [

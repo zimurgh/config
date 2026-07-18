@@ -47,10 +47,27 @@ in
     tokei
     lldb
     mpc
+    brave
+    openmw
+    renderdoc
+    prismlauncher
+    onlyoffice-desktopeditors
+    csound
+    code-cursor
+    bitwig-studio
   ];
 
   programs.home-manager.enable = true;
   programs.emacs.enable = true;
+
+  programs.chromium = {
+    enable = true;
+    package = pkgs.brave;
+    extensions = [
+      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
+      { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; } # Vimium
+    ];
+  };
 
   programs.helix = {
     enable = true;
